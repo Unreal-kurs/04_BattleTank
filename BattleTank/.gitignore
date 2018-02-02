@@ -77,3 +77,6 @@ DerivedDataCache/*
 # Starter files
 Content/StarterContent/Textures
 Content/StarterContent/HDRI
+
+# Images
+Content/UI/Images
