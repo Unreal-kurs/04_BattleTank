@@ -40,8 +40,7 @@ void ATankPlayerController::AimTowordsCrosshair()
 	
 	if (GetSightRayHitLocation(HitLocation))	// Has "side-effect", is going to line trace.
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit location: %s"), *HitLocation.ToString());		
-		// TODO Tell controlled tank to aim at this point
+		GetControlledTank()->AimAt(HitLocation);
 	}	
 }
 
@@ -60,7 +59,6 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 		// Line-trace along that look direction, and see what we hit (up to max range)
 		GetLookVectorHitLocation(LookDirection, OutHitLocation);
 	}
-
 	
 	return true;
 }
