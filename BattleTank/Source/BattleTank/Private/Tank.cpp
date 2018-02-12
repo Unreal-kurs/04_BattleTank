@@ -18,8 +18,7 @@ ATank::ATank()
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
-	Super::BeginPlay();
-	
+	Super::BeginPlay();	
 }
 
 void ATank::AimAt(FVector HitLocation)
@@ -37,10 +36,15 @@ void ATank::SetTurretReference(UTankTurret* TurretToSet)
 	TankAimingComponent->SetTurretReference(TurretToSet);
 }
 
+void ATank::Fire()
+{
+	auto Time = GetWorld()->GetTimeSeconds();
+	UE_LOG(LogTemp, Warning, TEXT("%f: Player tank is firing!"), Time);
+}
+
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
