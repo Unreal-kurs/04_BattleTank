@@ -4,12 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Engine/World.h"
 #include "Tank.generated.h"		// Put new includes above
 
 // Forward declarations
 class UTankBarrel;
 class UTankTurret;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class AProjectile;
 
 UCLASS()
@@ -38,6 +40,9 @@ public:
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
+
 private:	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;	
@@ -52,7 +57,5 @@ private:
 	float ReloadTimeInSeconds = 3;
 
 	// Local barrel reference for spawning projectile
-	UTankBarrel* Barrel = nullptr;	
-
-	double LastFireTime = 0;
+	UTankBarrel* Barrel = nullptr;
 };
