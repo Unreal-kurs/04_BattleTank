@@ -3,9 +3,12 @@
 #pragma once
 
 #include "AIController.h"
+#include "Tank.h"
 #include "CoreMinimal.h"
 #include "Engine/World.h"
 #include "TankAIController.generated.h"
+
+class UTankAimingComponent;
 
 /**
  * 
