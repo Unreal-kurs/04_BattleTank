@@ -1,8 +1,6 @@
-// Copyright Spelgarden ENK
+// Copyright Spelgarden ENK and EmbraceIT Ltd.
 
 #include "Tank.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
 
 // Sets default values
 ATank::ATank()

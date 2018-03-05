@@ -1,4 +1,4 @@
-// Copyright Spelgarden ENK
+// Copyright Spelgarden ENK and EmbraceIT Ltd.
 
 #include "TankMovementComponent.h"
 #include "TankTrack.h"

@@ -1,3 +1,4 @@
+// Copyright Spelgarden ENK and EmbraceIT Ltd.
 
 #include "TankTrack.h"
 
