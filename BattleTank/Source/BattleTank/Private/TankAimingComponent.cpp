@@ -1,6 +1,7 @@
 // Copyright Spelgarden ENK
 
 #include "TankAimingComponent.h"
+#include "Projectile.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
 
@@ -36,6 +37,34 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 		MoveBarrelTowards(AimDirection);		
 	}
 	// If no solution found, do nothing
+}
+
+void UTankAimingComponent::Fire()
+{
+	if (!ensure(Barrel && ProjectileBlueprint)) { return; }
+
+	bool isReloaded = GetWorld()->TimeSeconds - LastFireTime > ReloadTimeInSeconds;
+
+	if (isReloaded)
+	{
+		// Spawn a projectile at the socket location on the barrel
+		auto Projectile = GetWorld()->SpawnActor<class AProjectile>(
+			ProjectileBlueprint,
+			Barrel->GetSocketLocation(FName("Projectile")),
+			Barrel->GetSocketRotation(FName("Projectile"))
+			);
+
+		if (Projectile)
+		{
+			Projectile->LaunchProjectile(LaunchSpeed);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Projectile is null"))
+		}
+
+		LastFireTime = GetWorld()->TimeSeconds;
+	}
 }
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
