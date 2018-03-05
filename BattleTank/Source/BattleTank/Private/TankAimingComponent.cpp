@@ -1,7 +1,6 @@
 // Copyright Spelgarden ENK
 
 #include "TankAimingComponent.h"
-#include "BattleTank.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
 
