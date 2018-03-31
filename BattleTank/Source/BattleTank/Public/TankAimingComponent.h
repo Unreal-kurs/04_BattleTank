@@ -14,7 +14,8 @@ enum class EFiringState : uint8
 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
+	OutOfAmmo
 };
 
 // Forward declaration
@@ -42,6 +43,9 @@ public:
 
 	EFiringState GetFiringState() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int GetRoundsLeft() const;
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Aiming;
@@ -67,4 +71,6 @@ private:
 	FVector AimDirection;
 
 	float LastFireTime = 0;
+
+	int RoundsLeft = 3;
 };
