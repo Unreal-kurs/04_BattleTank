@@ -17,16 +17,17 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
-public:	
-	virtual void BeginPlay() override;	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
 private:
+	virtual void BeginPlay() override;
+	
+	virtual void SetPawn(APawn* InPawn) override;
+
+	virtual void Tick(float DeltaTime) override;
+
 	// Start the tank moving the barrel, so that a shot would hit
 	// where the crosshair intersects the world.
 	void AimTowordsCrosshair();
@@ -35,6 +36,9 @@ private:
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 
 	UPROPERTY(EditDefaultsOnly)
 	float CrosshairXLocation = 0.5;
